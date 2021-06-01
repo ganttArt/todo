@@ -36,7 +36,7 @@ const ToDo = () => {
       { _id: 5, complete: false, text: 'Take a Nap', difficulty: 1, assignee: 'Person B' },
     ];
 
-    setList([...list, ...newTasks])
+    setList(newTasks);
   }, [])
 
   return (
