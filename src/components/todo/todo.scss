@@ -22,6 +22,17 @@ body, html {
 
 }
 
+#card-container {
+    display: flex;
+    justify-content: center;
+
+    .card {
+        width: 80%;
+    }
+}
+
+
+
 .todo {
 
     display:flex;

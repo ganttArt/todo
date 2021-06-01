@@ -40,24 +40,26 @@ const ToDo = () => {
   }, [])
 
   return (
-    <Card>
-      <Card.Header as="h2">There are {list.filter(item => !item.complete).length} Items To Complete</Card.Header>
-      <Card.Body>
-        <section className="todo">
-          <div>
-            <TodoForm
-              handleSubmit={addItem}
-            />
-          </div>
-          <div>
-            <TodoList
-              list={list}
-              handleComplete={toggleComplete}
-            />
-          </div>
-        </section>
-      </Card.Body>
-    </Card>
+    <div id='card-container'>
+      <Card>
+        <Card.Header as="h2">There are {list.filter(item => !item.complete).length} Items To Complete</Card.Header>
+        <Card.Body>
+          <section className="todo">
+            <div>
+              <TodoForm
+                handleSubmit={addItem}
+              />
+            </div>
+            <div>
+              <TodoList
+                list={list}
+                handleComplete={toggleComplete}
+              />
+            </div>
+          </section>
+        </Card.Body>
+      </Card>
+    </div>
   );
 }
 
