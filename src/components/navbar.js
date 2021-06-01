@@ -4,7 +4,7 @@ import '../style/navbar.scss';
 
 const NavBar = () => {
   return (
-    <Navbar>
+    <Navbar bg="primary" variant="dark">
       <Navbar.Brand id='home' href="#home">Home</Navbar.Brand>
     </Navbar>
   )
