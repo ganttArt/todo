@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TodoForm from './form.js';
 import TodoList from './list.js';
+import { Card } from 'react-bootstrap';
 
 import './todo.scss';
 
@@ -39,27 +40,24 @@ const ToDo = () => {
   }, [])
 
   return (
-    <>
-      <header>
-        <h2>
-          There are {list.filter(item => !item.complete).length} Items To Complete
-        </h2>
-      </header>
-
-      <section className="todo">
-        <div>
-          <TodoForm
-            handleSubmit={addItem}
-          />
-        </div>
-        <div>
-          <TodoList
-            list={list}
-            handleComplete={toggleComplete}
-          />
-        </div>
-      </section>
-    </>
+    <Card>
+      <Card.Header as="h2">There are {list.filter(item => !item.complete).length} Items To Complete</Card.Header>
+      <Card.Body>
+        <section className="todo">
+          <div>
+            <TodoForm
+              handleSubmit={addItem}
+            />
+          </div>
+          <div>
+            <TodoList
+              list={list}
+              handleComplete={toggleComplete}
+            />
+          </div>
+        </section>
+      </Card.Body>
+    </Card>
   );
 }
 
