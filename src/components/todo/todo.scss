@@ -42,6 +42,14 @@ body, html {
         }
     }
 
+    .list-group {
+        button {
+            &.complete-false {
+                variant: warning;
+            }
+        }
+    }
+
     ul {
         list-style-type:none;
         margin:0;
