@@ -11,7 +11,7 @@ const ToDo = () => {
   const addItem = (item) => {
     item._id = Math.random();
     item.complete = false;
-    setList([...list, item])
+    setList([...list, item]);
   };
 
   const toggleComplete = id => {
@@ -20,7 +20,6 @@ const ToDo = () => {
 
     if (item._id) {
       item.complete = !item.complete;
-      console.log('in item');
       let newList = list.map(listItem => listItem._id === item._id ? item : listItem);
       setList(newList);
     }
