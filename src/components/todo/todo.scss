@@ -26,7 +26,7 @@ body, html {
     display: flex;
     justify-content: center;
 
-    .card {
+    #form-list-body {
         width: 80%;
     }
 
@@ -59,7 +59,49 @@ body, html {
     flex-direction:row;
     justify-content: flex-start;
     margin: 2em;
+    
+    .list-group{
+        width: 400px;
 
+        .card{
+            width: 100%;
+            margin-bottom: 1rem;
+
+            .card-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .complete-true {
+                    background-color: #F93154;
+                    border-radius: 10px;
+                    align-self: center;
+                  }
+                .complete-false {
+                    background-color: #00B74A;
+                    border-radius: 10px;
+                    align-self: center;
+                }
+
+                button {
+                    justify-content: flex-end;
+                    background: none;
+                    border: none;
+                    color: grey;
+                    font-weight: bolder;
+                }
+                button:hover {
+                    color: black;
+                }
+            }
+
+            #difficulty {
+                text-align: end;
+                color: grey;
+            }
+        }    
+    }
+    
     form {
 
         display:flex;

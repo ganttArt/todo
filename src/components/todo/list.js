@@ -1,20 +1,30 @@
 import React from 'react';
-import { ListGroup } from 'react-bootstrap';
+import { ListGroup, Card, Button, Badge } from 'react-bootstrap';
 
 function TodoList(props) {
   return (
     <ListGroup>
       {props.list.map(item => (
-        <ListGroup.Item
-          className={`complete-${item.complete.toString()}`}
-          key={item._id}
-          onClick={() => props.handleComplete(item._id)}
-          variant={item.complete ? 'success' : 'danger'}
-        >
-          {item.text}
-        </ListGroup.Item>
-      ))}
-    </ListGroup>
+        <Card key={item._id}>
+          <Card.Header>
+            <Badge 
+              variant={item.complete ? 'danger' : 'success'}
+              className={`complete-${item.complete.toString()}`}
+              onClick={() => props.handleComplete(item._id)}
+            >
+              {item.complete ? 'Completed' : 'Pending'}
+            </Badge>{' '}
+            <div id='assignee'>{item.assignee}</div>
+            <Button onClick={() => props.handleDelete(item._id)}>X</Button>
+          </Card.Header>
+          <Card.Body>
+            <Card.Text>{item.text}</Card.Text>
+            <div id='difficulty'>Difficulty: {item.difficulty}</div>
+          </Card.Body>
+        </Card>
+      ))
+      }
+    </ListGroup >
   )
 }
 
