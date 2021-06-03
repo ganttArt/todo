@@ -41,7 +41,7 @@ const ToDo = () => {
     }
   };
 
-  const _getTodoItems = async () => {
+  const _getTodoItems = () => {
     axios.get(todoAPI)
       .then(res => {
         const todos = res.data;
@@ -49,6 +49,14 @@ const ToDo = () => {
       })
       .catch(console.error);
   };
+
+  const handleDelete = (id) => {
+    axios.delete(`${todoAPI}/${id}`)
+      .then(res => {
+        _getTodoItems();
+      })
+      .catch(console.error); 
+  }
 
   useEffect(_getTodoItems, []);
 
@@ -67,6 +75,7 @@ const ToDo = () => {
               <TodoList
                 list={list}
                 handleComplete={toggleComplete}
+                handleDelete={handleDelete}
               />
             </div>
           </section>

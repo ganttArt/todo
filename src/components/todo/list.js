@@ -15,7 +15,7 @@ function TodoList(props) {
               {item.complete ? 'Completed' : 'Pending'}
             </Badge>{' '}
             <div id='assignee'>{item.assignee}</div>
-            <Button>X</Button>
+            <Button onClick={() => props.handleDelete(item._id)}>X</Button>
           </Card.Header>
           <Card.Body>
             <Card.Text>{item.text}</Card.Text>
