@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import TodoForm from './form.js';
 import TodoList from './list.js';
 import { Card } from 'react-bootstrap';
 
 import './todo.scss';
 
+const todoAPI = 'https://chrisgantt-api-server.herokuapp.com/todo';
+
 const ToDo = () => {
 
   const [list, setList] = useState([]);
 
   const addItem = (item) => {
-    item._id = Math.random();
     item.complete = false;
-    setList([...list, item]);
+    axios.post(todoAPI, item)
+      .then(res => {
+        console.log(res);
+        const savedItem = res.data;
+        setList([...list, savedItem]);
+      })
+      .catch(console.error);
   };
 
   const toggleComplete = id => {
@@ -21,23 +29,28 @@ const ToDo = () => {
 
     if (item._id) {
       item.complete = !item.complete;
-      let newList = list.map(listItem => listItem._id === item._id ? item : listItem);
-      setList(newList);
+
+      let url = `${todoAPI}/${id}`;
+
+      axios.put(url, item)
+        .then(res => {
+          const savedItem = res.data;
+          setList(list.map(listItem => listItem._id === item._id ? savedItem : listItem));
+        })
+        .catch(console.error);
     }
   };
 
-  useEffect(() => {
-    console.log('this will run on initial mounting of our component');
-    let newTasks = [
-      { _id: 1, complete: false, text: 'Clean the Kitchen', difficulty: 3, assignee: 'Person A' },
-      { _id: 2, complete: false, text: 'Do the Laundry', difficulty: 2, assignee: 'Person A' },
-      { _id: 3, complete: false, text: 'Walk the Dog', difficulty: 4, assignee: 'Person B' },
-      { _id: 4, complete: true, text: 'Do Homework', difficulty: 3, assignee: 'Person C' },
-      { _id: 5, complete: false, text: 'Take a Nap', difficulty: 1, assignee: 'Person B' },
-    ];
+  const _getTodoItems = async () => {
+    axios.get(todoAPI)
+      .then(res => {
+        const todos = res.data;
+        setList(todos);
+      })
+      .catch(console.error);
+  };
 
-    setList(newTasks);
-  }, [])
+  useEffect(_getTodoItems, []);
 
   return (
     <div id='card-container'>

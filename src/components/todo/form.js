@@ -6,6 +6,7 @@ const TodoForm = (props) => {
 
   const handleInputChange = e => {
     const updatedItem = item;
+    updatedItem['difficulty'] = '1';
     updatedItem[e.target.name] = e.target.value;
     console.log(item);
     setItem(updatedItem);
@@ -32,7 +33,7 @@ const TodoForm = (props) => {
         </Form.Group>
         <Form.Group controlId="difficultycg">
           <Form.Label>Difficulty Rating</Form.Label>
-          <Form.Control type="range" defaultValue="1" min="1" max="5" onChange={handleInputChange}/>
+          <Form.Control name="difficulty" type="range" defaultValue="1" min="1" max="5" onChange={handleInputChange}/>
         </Form.Group>
         <Button variant="primary" type="submit">
           Add item
